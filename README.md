@@ -1,2 +1,2 @@
 # rahat-aid-connect
-Beneficiary Registration Tool for Agnecies
+Beneficiary Registration Tool for Agencies
