@@ -10,7 +10,7 @@ export default function AppHeader({ currentMenu, actionButton, ionIcon }) {
 		? React.createElement(io5[ionIcon], { className: 'ion-icon', style: { fontSize: 22 } })
 		: '';
 	return (
-		<div className="appHeader bg-primary text-light">
+		<div className="appHeader text-light" style={{ background: '#2b7ec1' }}>
 			<div className="left">
 				<button onClick={goBack} className="btn btn-text headerButton goBack">
 					<io5.IoChevronBackOutline className="ion-icon" />
