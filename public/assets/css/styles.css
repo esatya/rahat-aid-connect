@@ -5171,6 +5171,7 @@ textarea,
 	color: #27173E;
 	font-weight: 500;
 	display: block;
+	font-size: 15px;
 	/* margin-bottom: 8px */
 }
 
@@ -5178,7 +5179,9 @@ textarea,
 	font-weight: 700;
 	letter-spacing: -0.01em;
 	line-height: 1em;
-	font-size: 24px
+	font-size: 24px;
+	margin-bottom: 5px;
+	color: #2b7ec1;
 }
 
 .wallet-card .wallet-footer {

@@ -186,7 +186,7 @@ export default function Main() {
 									</button>
 								</div>
 							) : (
-								<div className="d-flex justify-content-between align-items-center mt-5">
+								<div className="d-flex justify-content-between align-items-center mt-5 mb-3">
 									<div style={{ width: '40px', height: '40px' }}></div>
 
 									<div className="btn-shutter" onClick={capture}>

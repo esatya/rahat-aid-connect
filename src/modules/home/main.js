@@ -20,12 +20,12 @@ export default function Main() {
 			<div id="appCapsule">
 				<div className="section wallet-card-section pt-2">
 					<div className="wallet-card">
-						<div className="">
-							<span className="title">Wash programme</span>
+						<div className="balance">
+							<h3 className="title">Wash Programme</h3>
 						</div>
 						<div className="balance mt-3">
 							<div className="left">
-								<h1 className="total">3000000</h1>
+								<h1 className="total">3000</h1>
 								<span className="">Total beneficiaries</span>
 							</div>
 						</div>
