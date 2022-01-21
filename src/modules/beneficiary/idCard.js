@@ -6,7 +6,7 @@ import { BiReset } from 'react-icons/bi';
 import Webcam from 'react-webcam';
 // import Swal from 'sweetalert2';
 
-import Loading from '../global/Loading';
+// import Loading from '../global/Loading';
 import AppHeader from '../layouts/AppHeader';
 import { Link } from 'react-router-dom';
 import { IoChevronBackOutline, IoHomeOutline } from 'react-icons/io5';
@@ -17,7 +17,7 @@ import { IoChevronBackOutline, IoHomeOutline } from 'react-icons/io5';
 
 export default function Main() {
 	const history = useHistory();
-	const [loading, showLoading] = useState(null);
+	// const [loading, showLoading] = useState(null);
 	const [videoConstraints, setVideoConstraints] = useState({
 		facingMode: 'environment',
 		forceScreenshotSourceSize: true,
@@ -132,7 +132,7 @@ export default function Main() {
 					</div>
 				) : (
 					<>
-						<Loading message={loading} showModal={loading !== null} />
+						{/* <Loading message={loading} showModal={loading !== null} /> */}
 						<div className="section">
 							<div className="card1">
 								<h3 className="mt-4">Take a picture of beneficiary ID card</h3>
