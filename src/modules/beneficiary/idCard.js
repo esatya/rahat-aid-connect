@@ -11,7 +11,6 @@ import { RegisterBeneficiaryContext } from '../../contexts/registerBeneficiaryCo
 
 export default function Main() {
 	const history = useHistory();
-	// const [loading, showLoading] = useState(null);
 	const [videoConstraints, setVideoConstraints] = useState({
 		facingMode: 'environment',
 		forceScreenshotSourceSize: true,
@@ -31,7 +30,6 @@ export default function Main() {
 
 	const save = async event => {
 		event.preventDefault();
-		showLoading(true);
 		history.push('/beneficiary/preview');
 		setBeneficiaryIdImage(previewImage)
 		

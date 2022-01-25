@@ -69,8 +69,8 @@ const DataService = {
 	},
 
 	listBeneficiaries(type) {
-		if (!type) return db.beneficiaries.orderBy('name').reverse().toArray();
-		return db.beneficiaries.get({ type }).orderBy('timestamp').reverse();
+		if (!type) return db.beneficiaries.orderBy('createdAt').reverse().toArray();
+		return db.beneficiaries.get({ type }).orderBy('createdAt').reverse();
 	},
 
 };

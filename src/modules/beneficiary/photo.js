@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { IoChevronForwardOutline, IoSyncOutline, IoRadioButtonOff } from 'react-icons/io5';
 import { BiReset } from 'react-icons/bi';
@@ -7,7 +7,7 @@ import AppHeader from '../layouts/AppHeader';
 import { Link } from 'react-router-dom';
 import { IoChevronBackOutline, IoHomeOutline } from 'react-icons/io5';
 
-// import { RegisterBeneficiaryContext } from '../../contexts/registerBeneficiaryContext';
+import { RegisterBeneficiaryContext } from '../../contexts/registerBeneficiaryContext';
 
 export default function Main() {
 	const history = useHistory();
@@ -18,7 +18,7 @@ export default function Main() {
 		minScreenshotWidth: 1024
 	});
 	const [previewImage, setPreviewImage] = useState('');
-	// const { setBeneficiaryPhoto } = useContext(RegisterBeneficiaryContext);
+	const { setBeneficiaryPhoto } = useContext(RegisterBeneficiaryContext);
 
 	const webcamRef = React.useRef(null);
 	const camContainerRef = React.useRef();
