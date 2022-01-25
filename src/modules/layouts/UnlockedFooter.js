@@ -14,10 +14,10 @@ export default function UnlockedFooter() {
 							<strong>Beneficiary</strong>
 						</div>
 					</Link>
-					<Link to="/add" className="item">
+					<Link to="/register" className="item">
 						<div className="col">
 							<MdPostAdd className="ion-icon" />
-							<strong>Add</strong>
+							<strong>Register</strong>
 						</div>
 					</Link>
 

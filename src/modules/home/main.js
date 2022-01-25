@@ -25,7 +25,7 @@ export default function Main() {
 						<div className="balance">
 							<h3 className="title">Wash Programme</h3>
 						</div>
-						<div className="balance mt-3">
+						<div className="balance mt-2">
 							<div className="left">
 								<h1 className="total">{totalBen}</h1>
 								<span className="">Total beneficiaries</span>

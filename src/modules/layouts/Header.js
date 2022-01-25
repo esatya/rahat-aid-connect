@@ -11,8 +11,8 @@ export default function Header() {
 					</a>
 				</div>
 				<div className="pageTitle">
-					<img src="assets/img/brand/icon-white-128.png" width="22" alt="logo" className="logo" />
-					&nbsp; Rahat aid connect
+					<img src="assets/img/brand/icon-white-128.png" width="25" alt="logo" className="logo" />
+					&nbsp; Rahat Aid Connect
 				</div>
 			</div>
 		</div>

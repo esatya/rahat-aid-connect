@@ -7,7 +7,6 @@ import { IoHomeOutline } from 'react-icons/io5';
 
 const BeneficiaryDetail = props => {
     const benId = props.match.params.phone
-    console.log({benId});
     const [benData,setBenData] = useState({});
 
     const getBeneficiaryData = useCallback(async() => {
