@@ -1,20 +1,22 @@
-import React from 'react';
+import React,{useEffect,useState,useCallback} from 'react';
 import { Link } from 'react-router-dom';
-import List from '../beneficiary/list';
+import BeneficiaryList from '../beneficiary/list';
+import DataService from '../../services/db';
 
-const recentBen = [
-	{
-		id: 1,
-		name: 'superman',
-		icon: '/assets/img/brand/icon-192.png'
-	},
-	{
-		id: 2,
-		name: 'ironman',
-		icon: '/assets/img/brand/icon-192.png'
-	}
-];
+
 export default function Main() {
+
+	const [totalBen,setTotalBen] = useState(0);
+
+	const getTotalBeneficiary = useCallback(async()=>{
+		const beneficiaries = await DataService.listBeneficiaries();
+		setTotalBen(beneficiaries.length)
+	},[])
+
+	useEffect(()=>{
+		getTotalBeneficiary()
+	},[getTotalBeneficiary])
+
 	return (
 		<>
 			<div id="appCapsule">
@@ -25,8 +27,8 @@ export default function Main() {
 						</div>
 						<div className="balance mt-2">
 							<div className="left">
-								<span>Total beneficiaries</span>
-								<h1 className="total">3000</h1>
+								<h1 className="total">{totalBen}</h1>
+								<span className="">Total beneficiaries</span>
 							</div>
 						</div>
 					</div>
@@ -54,11 +56,8 @@ export default function Main() {
 						</div>
 						<div
 							className="card-body"
-							style={{
-								paddingTop: '0px'
-							}}
 						>
-							<List limit="3" beneficiary={recentBen} />
+							<BeneficiaryList limit="3" />
 						</div>
 					</div>
 				</div>

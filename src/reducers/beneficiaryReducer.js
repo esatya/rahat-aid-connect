@@ -6,6 +6,7 @@ const AppReducer = (state, action) => {
 			return {
 				...state,
 				name: action.data.name,
+				phone: action.data.phone,
 				gender: action.data.gender,
 				dob: action.data.dob,
 				agency: action.data.agency,

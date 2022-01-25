@@ -5,11 +5,8 @@ const AppReducer = (state, action) => {
 		case APP_ACTIONS.INIT_APP:
 			return {
 				...state,
-				address: action.data.address,
-				network: action.data.network,
-				hasWallet: action.data.hasWallet,
-				tokenBalance: action.data.balance,
-				agency: action.data.agency
+				totalBeneficiary: action.data.address,
+				project: action.data.network,
 			};
 
 		case APP_ACTIONS.SET_AGENCY:

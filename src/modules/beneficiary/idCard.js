@@ -1,19 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { IoChevronForwardOutline, IoRadioButtonOff } from 'react-icons/io5';
 
 import { BiReset } from 'react-icons/bi';
 import Webcam from 'react-webcam';
-// import Swal from 'sweetalert2';
-
-// import Loading from '../global/Loading';
 import AppHeader from '../layouts/AppHeader';
 import { Link } from 'react-router-dom';
 import { IoChevronBackOutline, IoHomeOutline } from 'react-icons/io5';
-// import { AppContext } from '../../contexts/AppContext';
-// import { RegisterBeneficiaryContext } from '../../contexts/registerBeneficiaryContext';
-// import * as Service from '../../services';
-// import { getAuthSignature } from '../../utils';
+import { RegisterBeneficiaryContext } from '../../contexts/registerBeneficiaryContext';
 
 export default function Main() {
 	const history = useHistory();
@@ -28,61 +22,19 @@ export default function Main() {
 	const [previewImage, setPreviewImage] = useState('');
 	const [showPageLoader, setShowPageLoader] = useState(true);
 	const webcamRef = React.useRef(null);
-	// const { addBeneficiary, setBeneficiaryIdImage, name, phone, address, govt_id, photo, govt_id_image } =
-	// 	useContext(RegisterBeneficiaryContext);
-	// const { wallet } = useContext(AppContext);
+	const {  setBeneficiaryIdImage } = useContext(RegisterBeneficiaryContext);
 
 	const capture = () => {
 		const imageSrc = webcamRef.current.getScreenshot();
 		setPreviewImage(imageSrc);
 	};
 
-	// const registerBeneficiary = useCallback(async () => {
-	// const signature = await getAuthSignature(wallet);
-	// const benExists = await Service.getBeneficiaryById(signature, phone);
-	// setBeneficiaryIdImage(previewImage);
-	// if (!benExists) {
-	// 	const ben = await addBeneficiary(signature);
-	// 	if (!ben) {
-	// 		Swal.fire('Error', 'Invalid Beneficiary, Please enter valid details.', 'error');
-	// 		return;
-	// 	}
-	// 	let beneficiary = {
-	// 		name: name,
-	// 		address: address || null,
-	// 		phone: phone || null,
-	// 		govt_id: govt_id || null,
-	// 		photo: photo,
-	// 		govt_id_image: govt_id_image,
-	// 		createdAt: Date.now()
-	// 		//	id,name,location,phone,age,gender,familySize,address,createdAt
-	// 	};
-	// 	await DataService.addBeneficiary(beneficiary);
-	// }
-	// }, [
-	// addBeneficiary,
-	// address,
-	// name,
-	// phone,
-	// govt_id,
-	// photo,
-	// govt_id_image,
-	// previewImage,
-	// setBeneficiaryIdImage
-	// wallet
-	// ]);
-
 	const save = async event => {
 		event.preventDefault();
+		showLoading(true);
 		history.push('/beneficiary/preview');
-
-		// try {
-		// 	await registerBeneficiary();
-		// 	history.push('/beneficiary/preview');
-		// } catch (err) {
-		// 	Swal.fire('ERROR', err.message, 'error');
-		// 	showLoading(null);
-		// }
+		setBeneficiaryIdImage(previewImage)
+		
 	};
 
 	const skip = async event => {

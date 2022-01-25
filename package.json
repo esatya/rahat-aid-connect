@@ -21,6 +21,7 @@
   "dependencies": {
     "axios": "^0.24.0",
     "bootstrap": "^4.5.1",
+    "dexie": "^3.2.0",
     "history": "^5.0.0",
     "ipfs-http-client": "^49.0.2",
     "ipfs-only-hash": "^4.0.0",

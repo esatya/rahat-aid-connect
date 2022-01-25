@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AppHeader from '../layouts/AppHeader';
 import { useHistory } from 'react-router-dom';
 import { IoChevronBackOutline, IoHomeOutline } from 'react-icons/io5';
+import { RegisterBeneficiaryContext } from '../../contexts/registerBeneficiaryContext';
+import DataService from '../../services/db'
 // import image from '../../../public/assets/img/brand/icon-192.png';
 
 export default function Preview() {
 	const history = useHistory();
+	const { name,phone,address,gender,photo,govt_id_image,resetBeneficiary } = useContext(RegisterBeneficiaryContext);
 
 	const handleRegister = async event => {
 		event.preventDefault();
-		// await setBeneficiaryPhoto(previewImage);
+		await DataService.addBeneficiary({
+			name,
+			phone,
+			address,
+			photo,
+			govt_id_image,
+			createdAt: Date.now()
+		})
+		resetBeneficiary();
 		history.push('/');
 	};
 
@@ -41,27 +52,27 @@ export default function Preview() {
 							<ul className="listview flush transparent simple-listview no-space mt-3">
 								<li>
 									<strong>Name:</strong>
-									<span>Superman</span>
+									<span>{name}</span>
 								</li>
 								<li>
 									<strong>Phone:</strong>
-									<span>9876543322</span>
+									<span>{phone}</span>
 								</li>
 								<li>
 									<strong>Address:</strong>
 									<span>
-										<span>LA, USA</span>
+										<span>{address}</span>
 									</span>
 								</li>
 								<li>
 									<strong>Gender</strong>
-									<span>Male</span>
+									<span>{gender}</span>
 								</li>
 							</ul>
 							<div className="d-flex justify-content-around mt-3">
 								<img
 									// src={`https://ipfs.rumsan.com/ipfs//${nft.metadata.packageImgURI}`}
-									src="/assets/img/brand/icon-192.png"
+									src={photo ? photo : '/assets/img/brand/icon-192.png'}
 									width="100"
 									height="100"
 									alt="profile_photo"
@@ -69,7 +80,7 @@ export default function Preview() {
 								/>
 								<img
 									// src={`https://ipfs.rumsan.com/ipfs//${nft.metadata.packageImgURI}`}
-									src="/assets/img/brand/icon-192.png"
+									src={govt_id_image ? govt_id_image : '/assets/img/brand/icon-192.png'}
 									width="100"
 									height="100"
 									alt="id_card"

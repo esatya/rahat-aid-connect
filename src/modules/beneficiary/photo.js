@@ -22,16 +22,9 @@ export default function Main() {
 
 	const webcamRef = React.useRef(null);
 	const camContainerRef = React.useRef();
-	//const { width, height } = useResize(camContainerRef);
 
 	const capture = () => {
 		const imageSrc = webcamRef.current.getScreenshot();
-		// fetch(imageSrc)
-		// 	.then(res => {
-		// 		const result = res.blob();
-		// 		resolve(result);
-		// 	})
-		// 	.catch(err => reject(err));
 		setPreviewImage(imageSrc);
 	};
 	const handleFaceChange = () => {
@@ -42,7 +35,7 @@ export default function Main() {
 
 	const save = async event => {
 		event.preventDefault();
-		// await setBeneficiaryPhoto(previewImage);
+		setBeneficiaryPhoto(previewImage);
 		history.push('/beneficiary/idcard');
 	};
 

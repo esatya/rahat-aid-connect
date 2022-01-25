@@ -1,26 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import AppHeader from '../layouts/AppHeader';
 import { IoHomeOutline } from 'react-icons/io5';
 import { Form, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import DataService from '../../services/db';
 
-const beneficiary = [
-	{
-		id: 1,
-		name: 'superman',
-		icon: '/assets/img/brand/icon-192.png'
-	},
-	{
-		id: 2,
-		name: 'ironman',
-		icon: '/assets/img/brand/icon-192.png'
-	}
-];
 
 const BeneficiaryList = () => {
 	const history = useHistory();
 	const [ben, setBen] = useState([]);
+
+	const getAllBeneficiary = useCallback(async()=>{
+		const beneficiaries = await DataService.listBeneficiaries();
+		setBen(beneficiaries)
+	},[])
 
 	const save = async e => {
 		e.preventDefault();
@@ -28,8 +22,8 @@ const BeneficiaryList = () => {
 	};
 
 	useEffect(() => {
-		setBen(beneficiary);
-	}, [setBen]);
+		getAllBeneficiary()
+	}, [getAllBeneficiary]);
 	return (
 		<>
 			<AppHeader
@@ -49,10 +43,10 @@ const BeneficiaryList = () => {
 								{ben.length > 0 &&
 									ben.map(ben => {
 										return (
-											<li key={ben.id}>
+											<li key={ben.phone}>
 												<div className="item mb-1 mt-1">
 													<Form.Group className="mb-0" controlId="formBasicCheckbox">
-														<Form.Check key={ben.id} type="checkbox" label={ben.name} />
+														<Form.Check key={ben.phone} type="checkbox" label={ben.name} />
 													</Form.Group>
 												</div>
 											</li>
