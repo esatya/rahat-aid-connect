@@ -10,6 +10,7 @@ import AddBeneficiary from '../beneficiary/add';
 import BeneficiaryPhoto from '../beneficiary/photo';
 import BeneficiaryId from '../beneficiary/idCard';
 import Preview from '../beneficiary/preview';
+import BeneficiaryDetails from '../beneficiary/beneficiaryDetails'
 
 function App() {
 	return (
@@ -23,6 +24,7 @@ function App() {
 				<PrivateRoute exact path="/beneficiary/photo" component={BeneficiaryPhoto} />
 				<PrivateRoute exact path="/beneficiary/idcard" component={BeneficiaryId} />
 				<PrivateRoute exact path="/beneficiary/preview" component={Preview} />
+				<PrivateRoute exact path="/beneficiary/:phone" component={BeneficiaryDetails} />
 				<Route path="*" component={Main} />
 			</Switch>
 			<Footer />

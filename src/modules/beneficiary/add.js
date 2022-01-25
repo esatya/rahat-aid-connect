@@ -1,52 +1,28 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Form, Button, Accordion, Card } from 'react-bootstrap';
 import { IoCloseCircle, IoHomeOutline, IoChevronDownOutline } from 'react-icons/io5';
-// import { RegisterBeneficiaryContext } from '../../contexts/registerBeneficiaryContext';
+import { RegisterBeneficiaryContext } from '../../contexts/registerBeneficiaryContext';
 import { useHistory } from 'react-router-dom';
 import AppHeader from '../layouts/AppHeader';
 import { Link } from 'react-router-dom';
 
 const AddBeneficiary = () => {
 	const history = useHistory();
-	const [beneficiaryDetail, setBeneficiaryDetails] = useState({
-		name: null,
-		phone: null,
-		gender: null,
-		dob: null,
-		agency: null,
-		email: null,
-		address: null,
-		address_temporary: null,
-		govt_id: null,
-		photo: null,
-		govt_id_image: null,
-		token: null,
-		extras: {
-			profession: null,
-			education: null,
-			family_members: null,
-			adult: null,
-			child: null,
-			age: null,
-			group: null
-		}
-	});
-	// const {
-	// 	setBeneficiaryDetails,
-	// 	setBeneficiaryPhone,
-	// 	name,
-	// 	phone,
-	// 	address,
-	// 	address_temporary,
-	// 	age,
-	// 	email,
-	// 	govt_id,
-	// 	profession,
-	// 	education,
-	// 	family_members,
-	// 	adult,
-	// 	child
-	// } = useContext(RegisterBeneficiaryContext);
+	const {
+		setBeneficiaryDetails,
+		name,
+		phone,
+		address,
+		address_temporary,
+		age,
+		email,
+		govt_id,
+		profession,
+		education,
+		family_members,
+		adult,
+		child
+	} = useContext(RegisterBeneficiaryContext);
 
 	const updateBeneficiaryData = e => {
 		let formData = new FormData(e.target.form);
@@ -54,10 +30,8 @@ const AddBeneficiary = () => {
 		formData.forEach((value, key) => {
 			data[key] = value;
 			if (data[key] === '') data[key] = null;
-			// return (data[key] = value)
 		});
 		setBeneficiaryDetails(data);
-		// setBeneficiaryPhone(data.phone);
 	};
 
 	const save = async e => {
@@ -98,7 +72,7 @@ const AddBeneficiary = () => {
 													name="name"
 													className="form-control"
 													placeholder="Enter your full name"
-													value={beneficiaryDetail.name ? beneficiaryDetail.name : ''}
+													value={name ? name : ''}
 													onChange={updateBeneficiaryData}
 													required
 												/>
@@ -115,7 +89,7 @@ const AddBeneficiary = () => {
 													className="form-control"
 													name="phone"
 													placeholder="Enter mobile number"
-													value={beneficiaryDetail.phone ? beneficiaryDetail.phone : ''}
+													value={phone ? phone : ''}
 													onChange={updateBeneficiaryData}
 													onKeyDown={e => {
 														if (['-', '+', 'e'].includes(e.key)) {
@@ -137,7 +111,7 @@ const AddBeneficiary = () => {
 													className="form-control"
 													name="address"
 													placeholder="Enter permanent address"
-													value={beneficiaryDetail.address ? beneficiaryDetail.address : ''}
+													value={address ? address : ''}
 													onChange={updateBeneficiaryData}
 												/>
 												<i className="clear-input">
@@ -166,11 +140,7 @@ const AddBeneficiary = () => {
 													className="form-control"
 													name="address_temporary"
 													placeholder="Enter temporary address"
-													value={
-														beneficiaryDetail.address_temporary
-															? beneficiaryDetail.address_temporary
-															: ''
-													}
+													value={address_temporary}
 													onChange={updateBeneficiaryData}
 												/>
 												<i className="clear-input">
@@ -186,7 +156,7 @@ const AddBeneficiary = () => {
 													className="form-control"
 													name="age"
 													placeholder="Enter age"
-													value={beneficiaryDetail.age ? beneficiaryDetail.age : ''}
+													value={age ? age : ''}
 													onChange={updateBeneficiaryData}
 												/>
 												<i className="clear-input">
@@ -215,7 +185,7 @@ const AddBeneficiary = () => {
 													className="form-control"
 													name="email"
 													placeholder="Enter email"
-													value={beneficiaryDetail.email ? beneficiaryDetail.email : ''}
+													value={email ? email : ''}
 													onChange={updateBeneficiaryData}
 												/>
 												<i className="clear-input">
@@ -231,7 +201,7 @@ const AddBeneficiary = () => {
 													className="form-control"
 													name="govt_id"
 													placeholder="Enter address"
-													value={beneficiaryDetail.govt_id ? beneficiaryDetail.govt_id : ''}
+													value={govt_id ? govt_id : ''}
 													onChange={updateBeneficiaryData}
 												/>
 												<i className="clear-input">
@@ -247,9 +217,7 @@ const AddBeneficiary = () => {
 													name="education"
 													className="form-control"
 													placeholder="Enter education"
-													value={
-														beneficiaryDetail.education ? beneficiaryDetail.education : ''
-													}
+													value={education ? education : ''}
 													onChange={updateBeneficiaryData}
 												/>
 												<i className="clear-input">
@@ -265,9 +233,7 @@ const AddBeneficiary = () => {
 													name="profession"
 													className="form-control"
 													placeholder="Enter profession"
-													value={
-														beneficiaryDetail.profession ? beneficiaryDetail.profession : ''
-													}
+													value={profession ? profession : ''}
 													onChange={updateBeneficiaryData}
 												/>
 												<i className="clear-input">
@@ -283,11 +249,7 @@ const AddBeneficiary = () => {
 													className="form-control"
 													name="family_members"
 													placeholder="Enter number of family members"
-													value={
-														beneficiaryDetail.family_members
-															? beneficiaryDetail.family_members
-															: ''
-													}
+													value={family_members ? family_members : ''}
 													onChange={updateBeneficiaryData}
 												/>
 												<i className="clear-input">
@@ -303,7 +265,7 @@ const AddBeneficiary = () => {
 													className="form-control"
 													name="adult"
 													placeholder="Enter number of adults"
-													value={beneficiaryDetail.adult ? beneficiaryDetail.adult : ''}
+													value={adult ? adult : ''}
 													onChange={updateBeneficiaryData}
 												/>
 												<i className="clear-input">
@@ -319,7 +281,7 @@ const AddBeneficiary = () => {
 													className="form-control"
 													name="child"
 													placeholder="Enter number of children"
-													value={beneficiaryDetail.child ? beneficiaryDetail.child : ''}
+													value={child ? child : ''}
 													onChange={updateBeneficiaryData}
 												/>
 												<i className="clear-input">

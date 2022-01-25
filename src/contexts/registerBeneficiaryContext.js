@@ -16,7 +16,6 @@ const initialState = {
 	govt_id: null,
 	photo: null,
 	govt_id_image: null,
-	token: null,
 	extras: {
 		profession: null,
 		education: null,
@@ -39,10 +38,6 @@ export const RegisterBeneficiaryContextProvider = ({ children }) => {
 
 	const setBeneficiaryPhone = phone => {
 		dispatch({ type: BENEFICIARY_ACTIONS.SET_PHONE, phone: phone });
-	};
-
-	const setBeneficiaryToken = token => {
-		dispatch({ type: BENEFICIARY_ACTIONS.SET_TOKEN, token: token });
 	};
 
 	const setBeneficiaryPhoto = photo => {
@@ -76,7 +71,6 @@ export const RegisterBeneficiaryContextProvider = ({ children }) => {
 				setBeneficiaryDetails,
 				setBeneficiaryPhone,
 				setBeneficiaryPhoto,
-				setBeneficiaryToken,
 				resetBeneficiary,
 				addBeneficiary,
 				setBeneficiaryIdImage
