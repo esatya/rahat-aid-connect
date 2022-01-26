@@ -4,12 +4,15 @@ import AppHeader from '../layouts/AppHeader';
 import { useHistory } from 'react-router-dom';
 import { IoChevronBackOutline, IoHomeOutline } from 'react-icons/io5';
 import { RegisterBeneficiaryContext } from '../../contexts/registerBeneficiaryContext';
-import DataService from '../../services/db'
+import DataService from '../../services/db';
+import { ImageGroup, Image } from 'react-fullscreen-image';
 // import image from '../../../public/assets/img/brand/icon-192.png';
+import { Row, Col } from 'react-bootstrap';
 
 export default function Preview() {
 	const history = useHistory();
-	const { name,phone,address,gender,photo,govt_id_image,resetBeneficiary } = useContext(RegisterBeneficiaryContext);
+	const { name, phone, address, gender, photo, govt_id_image, resetBeneficiary } =
+		useContext(RegisterBeneficiaryContext);
 
 	const handleRegister = async event => {
 		event.preventDefault();
@@ -20,7 +23,7 @@ export default function Preview() {
 			photo,
 			govt_id_image,
 			createdAt: Date.now()
-		})
+		});
 		resetBeneficiary();
 		history.push('/');
 	};
@@ -69,29 +72,35 @@ export default function Preview() {
 									<span>{gender}</span>
 								</li>
 							</ul>
-							<div className="d-flex justify-content-around mt-3">
-								<img
-									// src={`https://ipfs.rumsan.com/ipfs//${nft.metadata.packageImgURI}`}
-									src={photo ? photo : '/assets/img/brand/icon-192.png'}
-									width="100"
-									height="100"
-									alt="profile_photo"
-									className="image"
-								/>
-								<img
-									// src={`https://ipfs.rumsan.com/ipfs//${nft.metadata.packageImgURI}`}
-									src={govt_id_image ? govt_id_image : '/assets/img/brand/icon-192.png'}
-									width="100"
-									height="100"
-									alt="id_card"
-									className="image"
-								/>
-							</div>
+							<ImageGroup>
+								<Row className="mt-2 mb-4 previewImage">
+									<Col xs={6} className="previewImg mb-2">
+										<Image
+											src={photo ? photo : '/assets/img/brand/icon-192.png'}
+											alt="profile_photo"
+											style={{
+												height: '200px',
+												width: '200px'
+											}}
+										/>
+									</Col>
+									<Col xs={6} className="previewImg">
+										<Image
+											src={govt_id_image ? govt_id_image : '/assets/img/brand/icon-192.png'}
+											alt="id_card"
+											style={{
+												height: '200px',
+												width: '200px'
+											}}
+										/>
+									</Col>
+								</Row>
+							</ImageGroup>
 
 							<button
 								type="button"
 								id="btncharge"
-								className="btn btn-lg btn-block btn-success mt-4 mb-3"
+								className="btn btn-lg btn-block btn-success mb-3"
 								onClick={handleRegister}
 							>
 								Register
