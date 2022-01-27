@@ -10,14 +10,12 @@ import Invalid from '../global/Invalid';
 	useEffect(()=>{
 		checkAidConnectId(_aidConnectId)
 	},[checkAidConnectId,_aidConnectId])
-	console.log({aidConnectId,isActive})
-
-	// const data = await 
 	return (
 		<Route
 			{...rest}
 			render={props => {
-				if(isActive) return <Component {...props} {...rest} />; 
+				if(aidConnectId && isActive) return <Component {...props} {...rest} />; 
+				if(aidConnectId && !isActive) return <Invalid message="Aid-Connect Deactivated by Admin" />; 
 				else {
 					return 	<Invalid message="Invalid Aid-Connect Link" />
 				}

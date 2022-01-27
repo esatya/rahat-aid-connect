@@ -10,13 +10,10 @@ import {AppContext} from '../../contexts/AppContext'
 
 const BeneficiaryList = () => {
 	// const history = useHistory();
-	const [ben, setBen] = useState({});
 	const {aidConnectId} = useContext(AppContext);
-	const [checkedState, setCheckedState] = useState(new Array(ben.length).fill(false));
 	const [beneficiary, setBeneficiary] = useState([]);
 	const [selectAll, setSelectAll] = useState(false);
 	const [selectedBeneficiary, setSelectedBeneficiary] = useState([]);
-
 	const getAllBeneficiary = useCallback(async () => {
 		const beneficiariesList = await DataService.listBeneficiaries();
 		setBeneficiary(beneficiariesList);
