@@ -6657,7 +6657,7 @@ input.pwd {
 
 .previewImage {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
 	grid-gap: 15px;
 	list-style: none;
 	margin: 0;
@@ -6665,5 +6665,5 @@ input.pwd {
 }
 .previewImg{
 	position: relative;
-    padding-top: 50%;
+    padding-top: 40%;
 }
