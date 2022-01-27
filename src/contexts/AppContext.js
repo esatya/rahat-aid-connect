@@ -6,8 +6,6 @@ import APP_ACTIONS from '../actions/appActions';
 
 
 const initialState = {
-	address: null,
-	totalBeneficiary:0,
 	aidConnectId:null,
 	isActive:false
 };

@@ -4,33 +4,31 @@ import BENEFICIARY_ACTIONS from '../actions/beneficiaryActions';
 // import DataService from '../services/db';
 
 const initialState = {
-	name: null,
-	phone: null,
-	gender: null,
-	dob: null,
-	agency: null,
-	email: null,
-	address: null,
-	address_temporary: null,
-	govt_id: null,
-	photo: null,
-	govt_id_image: null,
+	name: '',
+	phone: '',
+	gender: '',
+	dob: '',
+	agency: '',
+	email: '',
+	address: '',
+	address_temporary: '',
+	govt_id: '',
+	photo: '',
+	govt_id_image: '',
 	extras: {
-		profession: null,
-		education: null,
-		family_members: null,
-		adult: null,
-		child: null,
-		age: null,
-		group: null
+		profession: '',
+		education: '',
+		family_members: '',
+		adult: '',
+		child: '',
+		age: '',
+		group: ''
 	}
 };
 
 export const RegisterBeneficiaryContext = createContext(initialState);
 export const RegisterBeneficiaryContextProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(BenificiaryReduce, initialState);
-	//const [data, updateData] = useState(initialState);
-
 	const setBeneficiaryDetails = beneficiary => {
 		dispatch({ type: BENEFICIARY_ACTIONS.SET_BENEFICIARY_DETAILS, data: beneficiary });
 	};
