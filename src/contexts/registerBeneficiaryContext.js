@@ -1,7 +1,6 @@
 import React, { createContext, useReducer } from 'react';
 import BenificiaryReduce from '../reducers/beneficiaryReducer';
 import BENEFICIARY_ACTIONS from '../actions/beneficiaryActions';
-import * as Service from '../services';
 // import DataService from '../services/db';
 
 const initialState = {
@@ -52,10 +51,10 @@ export const RegisterBeneficiaryContextProvider = ({ children }) => {
 		dispatch({ type: BENEFICIARY_ACTIONS.RESET, data: initialState });
 	};
 
-	const addBeneficiary = async signature => {
-		const project = await DataService.getDefaultProject();
-		return Service.registerBeneficiary(signature, { ...state, projects: project.id });
-	};
+	// const addBeneficiary = async signature => {
+	// 	const project = await DataService.getDefaultProject();
+	// 	return Service.registerBeneficiary(signature, { ...state, projects: project.id });
+	// };
 
 	// const initData = defaultData => {
 	// 	let newData = Object.assign({}, defaultData);
@@ -72,7 +71,6 @@ export const RegisterBeneficiaryContextProvider = ({ children }) => {
 				setBeneficiaryPhone,
 				setBeneficiaryPhoto,
 				resetBeneficiary,
-				addBeneficiary,
 				setBeneficiaryIdImage
 			}}
 		>

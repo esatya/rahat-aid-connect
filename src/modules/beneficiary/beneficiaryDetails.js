@@ -1,13 +1,15 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback,useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Avatar from '../../assets/images/Man.png';
 import DataService from '../../services/db';
 import AppHeader from '../layouts/AppHeader';
 import { IoHomeOutline } from 'react-icons/io5';
+import {AppContext} from '../../contexts/AppContext'
 
 const BeneficiaryDetail = props => {
 	const benId = props.match.params.phone;
 	const [benData, setBenData] = useState({});
+	const {aidConnectId} = useContext(AppContext);
 	const [date, setDate] = useState();
 
 	const getBeneficiaryData = useCallback(async () => {
@@ -26,7 +28,7 @@ const BeneficiaryDetail = props => {
 			<AppHeader
 				currentMenu="Beneficiary detail"
 				actionButton={
-					<Link to="/" className="headerButton">
+					<Link to={`/${aidConnectId}`} className="headerButton">
 						<IoHomeOutline className="ion-icon" />
 					</Link>
 				}

@@ -8,9 +8,11 @@ import AppHeader from '../layouts/AppHeader';
 import { Link } from 'react-router-dom';
 import { IoChevronBackOutline, IoHomeOutline } from 'react-icons/io5';
 import { RegisterBeneficiaryContext } from '../../contexts/registerBeneficiaryContext';
+import {AppContext} from '../../contexts/AppContext'
 
 export default function Main() {
 	const history = useHistory();
+	const {aidConnectId} = useContext(AppContext);
 	const [videoConstraints, setVideoConstraints] = useState({
 		facingMode: 'environment',
 		forceScreenshotSourceSize: true,
@@ -30,7 +32,7 @@ export default function Main() {
 
 	const save = async event => {
 		event.preventDefault();
-		history.push('/beneficiary/preview');
+		history.push(`/${aidConnectId}/beneficiary/preview`);
 		setBeneficiaryIdImage(previewImage)
 		
 	};
@@ -38,7 +40,7 @@ export default function Main() {
 	const skip = async event => {
 		event.preventDefault();
 		// await registerBeneficiary();
-		history.push('/beneficiary/preview');
+		history.push(`/${aidConnectId}/beneficiary/preview`);
 	};
 
 	useEffect(() => {
@@ -64,12 +66,12 @@ export default function Main() {
 			<AppHeader
 				currentMenu="Register Beneficiary"
 				backButton={
-					<Link to="/beneficiary/photo" className="headerButton goBack">
+					<Link to={`/${aidConnectId}/beneficiary/photo`} className="headerButton goBack">
 						<IoChevronBackOutline className="ion-icon" />
 					</Link>
 				}
 				actionButton={
-					<Link to="/" className="headerButton">
+					<Link to={`/${aidConnectId}`} className="headerButton">
 						<IoHomeOutline className="ion-icon" />
 					</Link>
 				}

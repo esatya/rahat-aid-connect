@@ -1,14 +1,15 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AppHeader from '../layouts/AppHeader';
 import { IoHomeOutline } from 'react-icons/io5';
 import DataService from '../../services/db';
 import Avatar from '../../assets/images/Man.png';
+import {AppContext} from '../../contexts/AppContext'
 
 const BeneficiaryList = () => {
 	const [ben, setBen] = useState([]);
-
-	const getBeneficiaries = useCallback(async () => {
+	const {aidConnectId} = useContext(AppContext);
+ 	const getBeneficiaries = useCallback(async () => {
 		let bens = await DataService.listBeneficiaries();
 		if (!bens) return;
 		setBen(bens);
@@ -23,7 +24,7 @@ const BeneficiaryList = () => {
 			<AppHeader
 				currentMenu="Beneficiaries"
 				actionButton={
-					<Link to="/" className="headerButton">
+					<Link to={`/${aidConnectId}`} className="headerButton">
 						<IoHomeOutline className="ion-icon" />
 					</Link>
 				}
@@ -37,7 +38,7 @@ const BeneficiaryList = () => {
 								ben.map(ben => {
 									return (
 										<li key={ben.phone}>
-											<Link to={`/beneficiary/${ben.phone}`} className="item">
+											<Link to={`/${aidConnectId}/beneficiary/${ben.phone}`} className="item">
 												<img src={Avatar} width="50" height="50" alt="" className="image" />
 												<div className="in">
 													<div>

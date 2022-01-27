@@ -1,10 +1,11 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import * as io5 from 'react-icons/io5';
+import { AppContext } from '../../contexts/AppContext';
 
 export default function AppHeader({ currentMenu, actionButton, ionIcon }) {
 	const history = useHistory();
-
+	const { aidConnectId } = useContext(AppContext);
 	const goBack = () => history.goBack();
 	const titleIcon = ionIcon
 		? React.createElement(io5[ionIcon], { className: 'ion-icon', style: { fontSize: 22 } })
@@ -22,7 +23,7 @@ export default function AppHeader({ currentMenu, actionButton, ionIcon }) {
 				{actionButton !== undefined ? (
 					<>{actionButton}</>
 				) : (
-					<Link to="/" className="headerButton">
+					<Link to={`/${aidConnectId}`} className="headerButton">
 						<io5.IoHomeOutline className="ion-icon" />
 					</Link>
 				)}
