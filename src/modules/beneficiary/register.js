@@ -52,8 +52,6 @@ const AddBeneficiary = () => {
 			<div id="appCapsule">
 				<div className="section mt-3">
 					<Form onSubmit={save}>
-						{/* <div className="card">
-							<div className="card-body"> */}
 						<Accordion defaultActiveKey="0" style={{ borderRadius: '10px' }}>
 							<Card>
 								<Accordion.Toggle as={Card.Header} eventKey="0" style={{ color: '#2b7ec1' }}>
@@ -293,8 +291,7 @@ const AddBeneficiary = () => {
 								</Accordion.Collapse>
 							</Card>
 						</Accordion>
-						{/* </div>
-						</div> */}
+
 						<Button type="submit" className="btn btn-lg btn-block btn-success mt-3 mb-2">
 							Continue
 						</Button>
