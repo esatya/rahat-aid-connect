@@ -5,12 +5,13 @@ import { IoHomeOutline, IoEye } from 'react-icons/io5';
 import { Button } from 'react-bootstrap';
 // import { useHistory } from 'react-router-dom';
 import DataService from '../../services/db';
-import {AppContext} from '../../contexts/AppContext'
+import {AppContext} from '../../contexts/AppContext';
+import Info from '../global/Info';
 
 
 const BeneficiaryList = () => {
 	// const history = useHistory();
-	const {aidConnectId} = useContext(AppContext);
+	const {aidConnectId,isActive} = useContext(AppContext);
 	const [beneficiary, setBeneficiary] = useState([]);
 	const [selectAll, setSelectAll] = useState(false);
 	const [selectedBeneficiary, setSelectedBeneficiary] = useState([]);
@@ -55,75 +56,82 @@ const BeneficiaryList = () => {
 					</Link>
 				}
 			/>
+
+			{
+			!isActive ? (<Info message='Cannot Share Beneficiary While Link is Deactivated'/> )
+			:(	
 			<div id="appCapsule">
-				<div className="section mt-2">
-					<h4 className="mt-3">Wash programme</h4>
-					<div className="card mt-3">
-						<div className="ml-3 mt-1 mb-1">
-							{selectedBeneficiary
-								? 'Beneficiary selected:' + selectedBeneficiary.length
-								: 'Beneficiary selected:' + 0}
-						</div>
-						<div className="wide-block p-0">
-							<div className="table-responsive p-1">
-								<table className="table">
-									<thead>
-										<tr>
-											<th scope="col">
-												<input
-													id="custom-checkbox"
-													onChange={handleSelectAll}
-													type="checkbox"
-													checked={selectAll}
-													value="select all"
-												/>
-											</th>
-											<th scope="col">Beneficiary</th>
-											<th scope="col">Action</th>
-										</tr>
-									</thead>
-									<tbody>
-										{beneficiary.length > 0 &&
-											beneficiary.map((ben, index) => {
-												return (
-													<tr key={ben.phone}>
-														<td>
-															<input
-																id={`custom-checkbox-${index}`}
-																onChange={() => handleCheckboxChange(ben.phone)}
-																type="checkbox"
-																checked={selectedBeneficiary.includes(ben.phone)}
-																value={ben.phone}
+			<div className="section mt-2">
+				<h4 className="mt-3">Wash programme</h4>
+				<div className="card mt-3">
+					<div className="ml-3 mt-1 mb-1">
+						{selectedBeneficiary
+							? 'Beneficiary selected:' + selectedBeneficiary.length
+							: 'Beneficiary selected:' + 0}
+					</div>
+					<div className="wide-block p-0">
+						<div className="table-responsive p-1">
+							<table className="table">
+								<thead>
+									<tr>
+										<th scope="col">
+											<input
+												id="custom-checkbox"
+												onChange={handleSelectAll}
+												type="checkbox"
+												checked={selectAll}
+												value="select all"
+											/>
+										</th>
+										<th scope="col">Beneficiary</th>
+										<th scope="col">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									{beneficiary.length > 0 &&
+										beneficiary.map((ben, index) => {
+											return (
+												<tr key={ben.phone}>
+													<td>
+														<input
+															id={`custom-checkbox-${index}`}
+															onChange={() => handleCheckboxChange(ben.phone)}
+															type="checkbox"
+															checked={selectedBeneficiary.includes(ben.phone)}
+															value={ben.phone}
+														/>
+													</td>
+													<td>
+														<div>
+															<strong>{ben.name}</strong>
+															<br />
+															{ben.phone}
+														</div>
+													</td>
+													<td>
+														<Link to={`/${aidConnectId}/beneficiary/${ben.phone}`}>
+															<IoEye
+																className="ion-icon"
+																style={{ fontSize: '24px', color: '#2B7EC1' }}
 															/>
-														</td>
-														<td>
-															<div>
-																<strong>{ben.name}</strong>
-																<br />
-																{ben.phone}
-															</div>
-														</td>
-														<td>
-															<Link to={`/${aidConnectId}/beneficiary/${ben.phone}`}>
-																<IoEye
-																	className="ion-icon"
-																	style={{ fontSize: '24px', color: '#2B7EC1' }}
-																/>
-															</Link>
-														</td>
-													</tr>
-												);
-											})}
-									</tbody>
-								</table>
-							</div>
+														</Link>
+													</td>
+												</tr>
+											);
+										})}
+								</tbody>
+							</table>
 						</div>
 					</div>
-					<Button onClick={handleShare} className="btn btn-lg btn-block btn-success mt-3 mb-2">
-						Share
-					</Button>
 				</div>
+				<Button onClick={handleShare} className="btn btn-lg btn-block btn-success mt-3 mb-2">
+					Share
+				</Button>
 			</div>
+		</div>
+				)
+			}	
+
 		</>
 	);
 };
