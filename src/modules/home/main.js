@@ -1,21 +1,19 @@
-import React,{useEffect,useState,useCallback} from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import BeneficiaryList from '../beneficiary/list';
 import DataService from '../../services/db';
 
-
 export default function Main() {
+	const [totalBen, setTotalBen] = useState(0);
 
-	const [totalBen,setTotalBen] = useState(0);
-
-	const getTotalBeneficiary = useCallback(async()=>{
+	const getTotalBeneficiary = useCallback(async () => {
 		const beneficiaries = await DataService.listBeneficiaries();
-		setTotalBen(beneficiaries.length)
-	},[])
+		setTotalBen(beneficiaries.length);
+	}, []);
 
-	useEffect(()=>{
-		getTotalBeneficiary()
-	},[getTotalBeneficiary])
+	useEffect(() => {
+		getTotalBeneficiary();
+	}, [getTotalBeneficiary]);
 
 	return (
 		<>
@@ -27,8 +25,10 @@ export default function Main() {
 						</div>
 						<div className="balance mt-2">
 							<div className="left">
-								<h1 className="total">{totalBen}</h1>
 								<span className="">Total beneficiaries</span>
+							</div>
+							<div className="right">
+								<h1 className="total">{totalBen}</h1>
 							</div>
 						</div>
 					</div>
@@ -54,9 +54,7 @@ export default function Main() {
 								View All
 							</Link>
 						</div>
-						<div
-							className="card-body"
-						>
+						<div className="card-body pt-1">
 							<BeneficiaryList limit="3" />
 						</div>
 					</div>
