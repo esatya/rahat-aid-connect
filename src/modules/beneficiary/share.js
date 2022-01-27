@@ -57,6 +57,11 @@ const BeneficiaryList = () => {
 				<div className="section mt-2">
 					<h4 className="mt-3">Wash programme</h4>
 					<div className="card mt-3">
+						<div className="ml-3 mt-1 mb-1">
+							{selectedBeneficiary
+								? 'Beneficiary selected:' + selectedBeneficiary.length
+								: 'Beneficiary selected:' + 0}
+						</div>
 						<div className="wide-block p-0">
 							<div className="table-responsive p-1">
 								<table className="table">
