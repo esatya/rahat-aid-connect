@@ -8,9 +8,11 @@ import DataService from '../../services/db';
 import { ImageGroup, Image } from 'react-fullscreen-image';
 // import image from '../../../public/assets/img/brand/icon-192.png';
 import { Row, Col } from 'react-bootstrap';
+import {AppContext} from '../../contexts/AppContext'
 
 export default function Preview() {
 	const history = useHistory();
+	const {aidConnectId} = useContext(AppContext);
 	const { name, phone, address, gender, photo, govt_id_image, resetBeneficiary } =
 		useContext(RegisterBeneficiaryContext);
 
@@ -25,7 +27,7 @@ export default function Preview() {
 			createdAt: Date.now()
 		});
 		resetBeneficiary();
-		history.push('/');
+		history.push(`/${aidConnectId}`);
 	};
 
 	return (
@@ -33,12 +35,12 @@ export default function Preview() {
 			<AppHeader
 				currentMenu="Register Beneficiary"
 				backButton={
-					<Link to="/beneficiary/idcard" className="headerButton goBack">
+					<Link to={`/${aidConnectId}/beneficiary/idcard`} className="headerButton goBack">
 						<IoChevronBackOutline className="ion-icon" />
 					</Link>
 				}
 				actionButton={
-					<Link to="/" className="headerButton">
+					<Link to={`/${aidConnectId}`} className="headerButton">
 						<IoHomeOutline className="ion-icon" />
 					</Link>
 				}

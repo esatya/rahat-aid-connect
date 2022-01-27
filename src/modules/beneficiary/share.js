@@ -1,15 +1,17 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback ,useContext} from 'react';
 import { Link } from 'react-router-dom';
 import AppHeader from '../layouts/AppHeader';
 import { IoHomeOutline, IoEye } from 'react-icons/io5';
 // import { Form, Button } from 'react-bootstrap';
 // import { useHistory } from 'react-router-dom';
 import DataService from '../../services/db';
+import {AppContext} from '../../contexts/AppContext'
+
 
 const BeneficiaryList = () => {
 	// const history = useHistory();
 	const [ben, setBen] = useState({});
-
+	const {aidConnectId} = useContext(AppContext);
 	const [checkedState, setCheckedState] = useState(new Array(ben.length).fill(false));
 	const [selectAll, setSelectAll] = useState(false);
 
@@ -28,6 +30,7 @@ const BeneficiaryList = () => {
 
 	const handleOnChange = position => {
 		const updatedCheckedState = checkedState.map((item, index) => (index === position ? !item : item));
+		console.log({checkedState})
 		setCheckedState(updatedCheckedState);
 	};
 
@@ -39,7 +42,7 @@ const BeneficiaryList = () => {
 			<AppHeader
 				currentMenu="Share"
 				actionButton={
-					<Link to="/" className="headerButton">
+					<Link to={`/${aidConnectId}`} className="headerButton">
 						<IoHomeOutline className="ion-icon" />
 					</Link>
 				}
@@ -88,7 +91,7 @@ const BeneficiaryList = () => {
 															</div>
 														</td>
 														<td>
-															<Link to={`/beneficiary/${ben.phone}`}>
+															<Link to={`/${aidConnectId}/beneficiary/${ben.phone}`}>
 																<IoEye
 																	className="ion-icon"
 																	style={{ fontSize: '24px', color: '#2B7EC1' }}

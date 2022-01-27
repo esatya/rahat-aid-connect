@@ -1,11 +1,12 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback,useContext } from 'react';
 import { Link } from 'react-router-dom';
 import BeneficiaryList from '../beneficiary/list';
 import DataService from '../../services/db';
+import {AppContext} from '../../contexts/AppContext';
 
 export default function Main() {
 	const [totalBen, setTotalBen] = useState(0);
-
+	const {aidConnectId}  = useContext(AppContext);
 	const getTotalBeneficiary = useCallback(async () => {
 		const beneficiaries = await DataService.listBeneficiaries();
 		setTotalBen(beneficiaries.length);
@@ -50,7 +51,7 @@ export default function Main() {
 								Recent Beneficiaries
 							</div>
 
-							<Link to="/list" className="link" style={{ marginRight: '16px' }}>
+							<Link to={`/${aidConnectId}/list`} className="link" style={{ marginRight: '16px' }}>
 								View All
 							</Link>
 						</div>

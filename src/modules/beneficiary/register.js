@@ -5,9 +5,12 @@ import { RegisterBeneficiaryContext } from '../../contexts/registerBeneficiaryCo
 import { useHistory } from 'react-router-dom';
 import AppHeader from '../layouts/AppHeader';
 import { Link } from 'react-router-dom';
+import {AppContext} from '../../contexts/AppContext'
+
 
 const AddBeneficiary = () => {
 	const history = useHistory();
+	const {aidConnectId} = useContext(AppContext);
 	const {
 		setBeneficiaryDetails,
 		name,
@@ -36,14 +39,14 @@ const AddBeneficiary = () => {
 
 	const save = async e => {
 		e.preventDefault();
-		history.push('/beneficiary/photo');
+		history.push(`/${aidConnectId}/beneficiary/photo`);
 	};
 	return (
 		<>
 			<AppHeader
 				currentMenu="Register Beneficiary"
 				actionButton={
-					<Link to="/" className="headerButton">
+					<Link to={`/${aidConnectId}`} className="headerButton">
 						<IoHomeOutline className="ion-icon" />
 					</Link>
 				}
