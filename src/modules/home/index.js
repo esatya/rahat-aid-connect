@@ -12,13 +12,13 @@ import BeneficiaryPhoto from '../beneficiary/photo';
 import BeneficiaryId from '../beneficiary/idCard';
 import Preview from '../beneficiary/preview';
 import BeneficiaryDetails from '../beneficiary/beneficiaryDetails'
+import DeactivatedInfo from '../global/Info'
 
 function App() {
 	return (
 		<>
 			<Header />
 			<Switch>
-			    {/* <Route exact path="/" component={Main} /> */}
 				<PrivateRoute exact path="/:aidConnectId" component={Main} />
 				<PrivateRoute exact path="/:aidConnectId/list" component={BeneficiaryList} />
 				<PrivateRoute exact path="/:aidConnectId/register" component={RegisterBeneficiary} />
@@ -27,6 +27,7 @@ function App() {
 				<PrivateRoute exact path="/:aidConnectId/beneficiary/idcard" component={BeneficiaryId} />
 				<PrivateRoute exact path="/:aidConnectId/beneficiary/preview" component={Preview} />
 				<PrivateRoute exact path="/:aidConnectId/beneficiary/:phone" component={BeneficiaryDetails} />
+				<PrivateRoute exact path="/:aidConnectId/deactivated-info" component={DeactivatedInfo}/>
 				<Route path="*" component={ErrorPage} />
 			</Switch>
 			<Footer />

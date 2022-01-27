@@ -5,7 +5,7 @@ import Invalid from '../global/Invalid';
  
 
  function PrivateRoute({ component: Component, ...rest }) {
-	const { checkAidConnectId,aidConnectId,isActive } = useContext(AppContext);
+	const { checkAidConnectId,aidConnectId } = useContext(AppContext);
 	const {aidConnectId:_aidConnectId} = rest.computedMatch.params
 	useEffect(()=>{
 		checkAidConnectId(_aidConnectId)
@@ -14,8 +14,7 @@ import Invalid from '../global/Invalid';
 		<Route
 			{...rest}
 			render={props => {
-				if(aidConnectId && isActive) return <Component {...props} {...rest} />; 
-				if(aidConnectId && !isActive) return <Invalid message="Aid-Connect Deactivated by Admin" />; 
+				if(aidConnectId) return <Component {...props} {...rest} />; 
 				else {
 					return 	<Invalid message="Invalid Aid-Connect Link" />
 				}
