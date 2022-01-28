@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
-import { IoChevronForwardOutline, IoSyncOutline, IoRadioButtonOff } from 'react-icons/io5';
+import { useHistory, Link } from 'react-router-dom';
+import {
+  IoChevronForwardOutline,
+  IoSyncOutline,
+  IoRadioButtonOff,
+  IoChevronBackOutline,
+  IoHomeOutline,
+} from 'react-icons/io5';
 import { BiReset } from 'react-icons/bi';
 import Webcam from 'react-webcam';
 import AppHeader from '../layouts/AppHeader';
-import { Link } from 'react-router-dom';
-import { IoChevronBackOutline, IoHomeOutline } from 'react-icons/io5';
 import { AppContext } from '../../contexts/AppContext';
 import { RegisterBeneficiaryContext } from '../../contexts/registerBeneficiaryContext';
 

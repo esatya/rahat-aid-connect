@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
-import { IoChevronForwardOutline, IoRadioButtonOff } from 'react-icons/io5';
+import { useHistory, Link } from 'react-router-dom';
+import {
+  IoChevronForwardOutline,
+  IoRadioButtonOff,
+  IoChevronBackOutline,
+  IoHomeOutline,
+} from 'react-icons/io5';
 
 import { BiReset } from 'react-icons/bi';
 import Webcam from 'react-webcam';
 import AppHeader from '../layouts/AppHeader';
-import { Link } from 'react-router-dom';
-import { IoChevronBackOutline, IoHomeOutline } from 'react-icons/io5';
 import { RegisterBeneficiaryContext } from '../../contexts/registerBeneficiaryContext';
 import { AppContext } from '../../contexts/AppContext';
 
@@ -138,7 +141,7 @@ export default function Main() {
                 </div>
               ) : (
                 <div className="d-flex justify-content-between align-items-center mt-5 mb-3">
-                  <div style={{ width: '40px', height: '40px' }}></div>
+                  <div style={{ width: '40px', height: '40px' }} />
 
                   <div className="btn-shutter" onClick={capture}>
                     <IoRadioButtonOff className="btn-shutter-icon" />

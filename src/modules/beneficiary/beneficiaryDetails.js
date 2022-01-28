@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { RiDeleteBin6Line } from 'react-icons/ri';
 import Avatar from '../../assets/images/Man.png';
 import DataService from '../../services/db';
 import AppHeader from '../layouts/AppHeader';
-import { RiDeleteBin6Line } from 'react-icons/ri';
 import { AppContext } from '../../contexts/AppContext';
 
 const BeneficiaryDetail = props => {
@@ -22,7 +22,6 @@ const BeneficiaryDetail = props => {
   }, [benId]);
 
   const handleDelete = async () => {
-    console.log('deleting');
     await DataService.deleteBeneficiary(benId);
     Swal.fire({
       title: 'Are you sure?',

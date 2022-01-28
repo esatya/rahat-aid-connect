@@ -14,9 +14,8 @@ function PrivateRoute({ component: Component, ...rest }) {
       {...rest}
       render={props => {
         if (aidConnectId) return <Component {...props} {...rest} />;
-        else {
-          return <Invalid message="Invalid Aid-Connect Link" />;
-        }
+
+        return <Invalid message="Invalid Aid-Connect Link" />;
       }}
     />
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Home from '../modules/home';
-import Errorpage from '../modules/global/Invalid';
+import Home from './home';
+import Errorpage from './global/Invalid';
 import { AppContextProvider } from '../contexts/AppContext';
 import { RegisterBeneficiaryContextProvider } from '../contexts/registerBeneficiaryContext';
 

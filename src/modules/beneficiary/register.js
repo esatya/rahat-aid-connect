@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
 import { Form, Button, Accordion, Card } from 'react-bootstrap';
 import { IoCloseCircle, IoHomeOutline, IoChevronDownOutline } from 'react-icons/io5';
+import { useHistory, Link } from 'react-router-dom';
 import { RegisterBeneficiaryContext } from '../../contexts/registerBeneficiaryContext';
-import { useHistory } from 'react-router-dom';
 import AppHeader from '../layouts/AppHeader';
-import { Link } from 'react-router-dom';
 import { AppContext } from '../../contexts/AppContext';
 
 const AddBeneficiary = () => {
@@ -27,8 +26,8 @@ const AddBeneficiary = () => {
   } = useContext(RegisterBeneficiaryContext);
 
   const updateBeneficiaryData = e => {
-    let formData = new FormData(e.target.form);
-    let data = {};
+    const formData = new FormData(e.target.form);
+    const data = {};
     formData.forEach((value, key) => {
       data[key] = value;
       if (data[key] === '') data[key] = null;
@@ -72,7 +71,7 @@ const AddBeneficiary = () => {
                           name="name"
                           className="form-control"
                           placeholder="Enter your full name"
-                          value={name ? name : ''}
+                          value={name || ''}
                           onChange={updateBeneficiaryData}
                           required
                         />
@@ -89,7 +88,7 @@ const AddBeneficiary = () => {
                           className="form-control"
                           name="phone"
                           placeholder="Enter mobile number"
-                          value={phone ? phone : ''}
+                          value={phone || ''}
                           onChange={updateBeneficiaryData}
                           onKeyDown={e => {
                             if (['-', '+', 'e'].includes(e.key)) {
@@ -111,7 +110,7 @@ const AddBeneficiary = () => {
                           className="form-control"
                           name="address"
                           placeholder="Enter permanent address"
-                          value={address ? address : ''}
+                          value={address || ''}
                           onChange={updateBeneficiaryData}
                           required
                         />
@@ -141,7 +140,7 @@ const AddBeneficiary = () => {
                           className="form-control"
                           name="address_temporary"
                           placeholder="Enter temporary address"
-                          value={address_temporary ? address_temporary : ''}
+                          value={address_temporary || ''}
                           onChange={updateBeneficiaryData}
                         />
                         <i className="clear-input">
@@ -157,7 +156,7 @@ const AddBeneficiary = () => {
                           className="form-control"
                           name="age"
                           placeholder="Enter age"
-                          value={age ? age : ''}
+                          value={age || ''}
                           onChange={updateBeneficiaryData}
                         />
                         <i className="clear-input">
@@ -190,7 +189,7 @@ const AddBeneficiary = () => {
                           className="form-control"
                           name="email"
                           placeholder="Enter email"
-                          value={email ? email : ''}
+                          value={email || ''}
                           onChange={updateBeneficiaryData}
                         />
                         <i className="clear-input">
@@ -206,7 +205,7 @@ const AddBeneficiary = () => {
                           className="form-control"
                           name="govt_id"
                           placeholder="Enter address"
-                          value={govt_id ? govt_id : ''}
+                          value={govt_id || ''}
                           onChange={updateBeneficiaryData}
                         />
                         <i className="clear-input">
@@ -222,7 +221,7 @@ const AddBeneficiary = () => {
                           name="education"
                           className="form-control"
                           placeholder="Enter education"
-                          value={education ? education : ''}
+                          value={education || ''}
                           onChange={updateBeneficiaryData}
                         />
                         <i className="clear-input">
@@ -238,7 +237,7 @@ const AddBeneficiary = () => {
                           name="profession"
                           className="form-control"
                           placeholder="Enter profession"
-                          value={profession ? profession : ''}
+                          value={profession || ''}
                           onChange={updateBeneficiaryData}
                         />
                         <i className="clear-input">
@@ -254,7 +253,7 @@ const AddBeneficiary = () => {
                           className="form-control"
                           name="family_members"
                           placeholder="Enter number of family members"
-                          value={family_members ? family_members : ''}
+                          value={family_members || ''}
                           onChange={updateBeneficiaryData}
                         />
                         <i className="clear-input">
@@ -270,7 +269,7 @@ const AddBeneficiary = () => {
                           className="form-control"
                           name="adult"
                           placeholder="Enter number of adults"
-                          value={adult ? adult : ''}
+                          value={adult || ''}
                           onChange={updateBeneficiaryData}
                         />
                         <i className="clear-input">
@@ -286,7 +285,7 @@ const AddBeneficiary = () => {
                           className="form-control"
                           name="child"
                           placeholder="Enter number of children"
-                          value={child ? child : ''}
+                          value={child || ''}
                           onChange={updateBeneficiaryData}
                         />
                         <i className="clear-input">

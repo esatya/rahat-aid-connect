@@ -34,15 +34,15 @@ export const RegisterBeneficiaryContextProvider = ({ children }) => {
   };
 
   const setBeneficiaryPhone = phone => {
-    dispatch({ type: BENEFICIARY_ACTIONS.SET_PHONE, phone: phone });
+    dispatch({ type: BENEFICIARY_ACTIONS.SET_PHONE, phone });
   };
 
   const setBeneficiaryPhoto = photo => {
-    dispatch({ type: BENEFICIARY_ACTIONS.SET_PHOTO, photo: photo });
+    dispatch({ type: BENEFICIARY_ACTIONS.SET_PHOTO, photo });
   };
 
   const setBeneficiaryIdImage = idImage => {
-    dispatch({ type: BENEFICIARY_ACTIONS.SET_ID_IMAGE, idImage: idImage });
+    dispatch({ type: BENEFICIARY_ACTIONS.SET_ID_IMAGE, idImage });
   };
 
   const resetBeneficiary = () => {

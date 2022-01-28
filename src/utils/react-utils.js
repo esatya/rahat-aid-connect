@@ -24,7 +24,7 @@ const useResize = myRef => {
 
 const useIcon = (name, options = {}) => {
   if (!name) return '';
-  return React.createElement(io5[name], Object.assign({ className: 'ion-icon' }, options));
+  return React.createElement(io5[name], { className: 'ion-icon', ...options });
 };
 
 export { useResize, useIcon };

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import AppHeader from '../layouts/AppHeader';
 import { IoHomeOutline } from 'react-icons/io5';
+import AppHeader from '../layouts/AppHeader';
 import DataService from '../../services/db';
 import Avatar from '../../assets/images/Man.png';
 import { AppContext } from '../../contexts/AppContext';
@@ -10,7 +10,7 @@ const BeneficiaryList = () => {
   const [ben, setBen] = useState([]);
   const { aidConnectId } = useContext(AppContext);
   const getBeneficiaries = useCallback(async () => {
-    let bens = await DataService.listBeneficiaries();
+    const bens = await DataService.listBeneficiaries();
     if (!bens) return;
     setBen(bens);
   }, []);

@@ -4,7 +4,7 @@ import { IoLockClosed } from 'react-icons/io5';
 import Loading from '../global/Loading';
 
 export default function LockedFooter() {
-  let history = useHistory();
+  const history = useHistory();
   const [loadingModal, setLoadingModal] = useState(false);
 
   const handleUnlockClick = async () => {
@@ -13,7 +13,7 @@ export default function LockedFooter() {
     history.push('/');
     setLoadingModal(false);
   };
-  //setTimeout(handleUnlockClick, 1000);
+  // setTimeout(handleUnlockClick, 1000);
 
   return (
     <>
@@ -21,10 +21,10 @@ export default function LockedFooter() {
       <div className="footer-locked">
         <div className="appBottomMenu">
           <a href="#target" className="item">
-            <div className="col"></div>
+            <div className="col" />
           </a>
           <a href="#target" className="item">
-            <div className="col"></div>
+            <div className="col" />
           </a>
           <a
             title="Tap here to unlock"
@@ -40,10 +40,10 @@ export default function LockedFooter() {
             </div>
           </a>
           <a href="#target" className="item">
-            <div className="col"></div>
+            <div className="col" />
           </a>
           <a href="#target" className="item">
-            <div className="col"></div>
+            <div className="col" />
           </a>
         </div>
       </div>
