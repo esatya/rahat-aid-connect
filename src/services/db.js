@@ -4,79 +4,78 @@ import { DB } from '../constants';
 const db = new Dexie(DB.NAME);
 
 db.version(DB.VERSION).stores({
-	beneficiaries: 'phone,name,address,email,gender,govt_id,createdAt,photo,govt_id_image,shared',
-	agencies:
-		'address,name,api,network,rahatAddress,tokenAddress,erc20Address,erc1155Address,adminAddress,phone,email,logo,isApproved',
-	projects: 'id,name',
-
+  beneficiaries: 'phone,name,address,email,gender,govt_id,createdAt,photo,govt_id_image,shared',
+  agencies:
+    'address,name,api,network,rahatAddress,tokenAddress,erc20Address,erc1155Address,adminAddress,phone,email,logo,isApproved',
+  projects: 'id,name',
 });
 
 const DataService = {
+  async clearAll() {
+    await db.data.clear();
+    await db.assets.clear();
+    await db.documents.clear();
+  },
 
+  addAgency(agency) {
+    return db.agencies.put(agency);
+  },
 
-	async clearAll() {
-		await db.data.clear();
-		await db.assets.clear();
-		await db.documents.clear();
-	},
+  getAgency(address) {
+    return db.agencies.get(address);
+  },
 
+  addProject(project) {
+    return db.projects.put(project);
+  },
 
-	addAgency(agency) {
-		return db.agencies.put(agency);
-	},
+  listProjects() {
+    return db.projects.toArray();
+  },
+  async getDefaultProject() {
+    let projects = await this.listProjects();
+    if (!projects) return null;
+    return projects[0];
+  },
 
-	getAgency(address) {
-		return db.agencies.get(address);
-	},
+  async updateAgency(key, data) {
+    return db.agencies.update(key, data);
+  },
 
-	addProject(project) {
-		return db.projects.put(project);
-	},
+  listAgencies() {
+    return db.agencies.toArray();
+  },
 
-	listProjects() {
-		return db.projects.toArray();
-	},
-	async getDefaultProject() {
-		let projects = await this.listProjects();
-		if (!projects) return null;
-		return projects[0];
-	},
+  async getDefaultAgency() {
+    let agencies = await this.listAgencies();
+    if (!agencies) return null;
+    return agencies[0];
+  },
 
-	async updateAgency(key, data) {
-		return db.agencies.update(key, data);
-	},
+  addBeneficiary(beneficiary) {
+    return db.beneficiaries.put(beneficiary);
+  },
 
-	listAgencies() {
-		return db.agencies.toArray();
-	},
+  getBeneficiary(phone) {
+    return db.beneficiaries.get(phone);
+  },
 
-	async getDefaultAgency() {
-		let agencies = await this.listAgencies();
-		if (!agencies) return null;
-		return agencies[0];
-	},
+  getBeneficiaryName(name) {
+    return db.beneficiaries.get(name);
+  },
 
-	addBeneficiary(beneficiary) {
-		return db.beneficiaries.put(beneficiary);
-	},
+  listBeneficiaries(type) {
+    if (!type) return db.beneficiaries.orderBy('createdAt').reverse().toArray();
+    return db.beneficiaries.get({ type }).orderBy('createdAt').reverse();
+  },
 
-	getBeneficiary(phone) {
-		return db.beneficiaries.get(phone);
-	},
+  updateBeneficiary(key, data) {
+    return db.beneficiaries.update(key, data);
+  },
 
-	getBeneficiaryName(name) {
-		return db.beneficiaries.get(name);
-	},
-
-	listBeneficiaries(type) {
-		if (!type) return db.beneficiaries.orderBy('createdAt').reverse().toArray();
-		return db.beneficiaries.get({ type }).orderBy('createdAt').reverse();
-	},
-
-	async updateBeneficiary(key, data) {
-		return db.beneficiaries.update(key, data);
-	},
-
+  deleteBeneficiary(key) {
+    return db.beneficiaries.delete(key);
+  },
 };
 
 export default DataService;
