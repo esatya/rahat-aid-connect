@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import UnlockedFooter from './UnlockedFooter';
 import { AppContext } from '../../contexts/AppContext';
-import { useHistory } from 'react-router-dom';
 
 export default function Footer() {
   const history = useHistory();

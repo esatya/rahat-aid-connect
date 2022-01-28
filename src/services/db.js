@@ -1,6 +1,7 @@
 import Dexie from 'dexie';
 
 import { DB } from '../constants';
+
 const db = new Dexie(DB.NAME);
 
 db.version(DB.VERSION).stores({
@@ -33,7 +34,7 @@ const DataService = {
     return db.projects.toArray();
   },
   async getDefaultProject() {
-    let projects = await this.listProjects();
+    const projects = await this.listProjects();
     if (!projects) return null;
     return projects[0];
   },
@@ -47,7 +48,7 @@ const DataService = {
   },
 
   async getDefaultAgency() {
-    let agencies = await this.listAgencies();
+    const agencies = await this.listAgencies();
     if (!agencies) return null;
     return agencies[0];
   },

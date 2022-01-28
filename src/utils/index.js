@@ -10,7 +10,8 @@ export function isOffline(msg) {
         'Cannot perform this action while you are offline. Please connect to the Internet and try again.',
     });
     return true;
-  } else return false;
+  }
+  return false;
 }
 
 export function mergeAndRemoveDuplicate(array1 = [], array2 = [], keyName) {
@@ -20,11 +21,11 @@ export function mergeAndRemoveDuplicate(array1 = [], array2 = [], keyName) {
 }
 
 export function dataURLtoFile(dataurl, filename = 'my_doc') {
-  var arr = dataurl.split(','),
-    mime = arr[0].match(/:(.*?);/)[1],
-    bstr = atob(arr[1]),
-    n = bstr.length,
-    u8arr = new Uint8Array(n);
+  const arr = dataurl.split(',');
+  const mime = arr[0].match(/:(.*?);/)[1];
+  const bstr = atob(arr[1]);
+  let n = bstr.length;
+  const u8arr = new Uint8Array(n);
 
   while (n--) {
     u8arr[n] = bstr.charCodeAt(n);

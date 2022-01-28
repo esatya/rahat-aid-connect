@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { AppContext } from '../../contexts/AppContext';
 import { MdWebAsset, MdPostAdd } from 'react-icons/md';
+import { AppContext } from '../../contexts/AppContext';
 import { useIcon } from '../../utils/react-utils';
 
 export default function UnlockedFooter() {

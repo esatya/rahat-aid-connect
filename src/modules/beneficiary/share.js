@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useCallback, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import AppHeader from '../layouts/AppHeader';
 import { IoHomeOutline, IoEye } from 'react-icons/io5';
 import { Button } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
+import AppHeader from '../layouts/AppHeader';
 import DataService from '../../services/db';
 import { AppContext } from '../../contexts/AppContext';
 import Info from '../global/Info';
@@ -55,7 +54,15 @@ const BeneficiaryList = () => {
       selectedBeneficiary.map(async el => {
         const { name, phone, address, email, gender, govt_id, shared } =
           await DataService.getBeneficiary(el);
-        return { name, phone, address, email, gender, govt_id, shared };
+        return {
+          name,
+          phone,
+          address,
+          email,
+          gender,
+          govt_id,
+          shared,
+        };
       }),
     );
     const filteredBen = filterSharedBeneficiary(beneficiaries);
@@ -99,8 +106,8 @@ const BeneficiaryList = () => {
             <div className="card mt-3">
               <div className="ml-3 mt-1 mb-1">
                 {selectedBeneficiary
-                  ? 'Beneficiary selected:' + selectedBeneficiary.length
-                  : 'Beneficiary selected:' + 0}
+                  ? `Beneficiary selected:${selectedBeneficiary.length}`
+                  : `Beneficiary selected:${0}`}
               </div>
               <div className="wide-block p-0">
                 <div className="table-responsive p-1">
