@@ -6,7 +6,7 @@ import BENEFICIARY_ACTIONS from '../actions/beneficiaryActions';
 const initialState = {
 	name: '',
 	phone: '',
-	gender: '',
+	gender: 'U',
 	dob: '',
 	agency: '',
 	email: '',

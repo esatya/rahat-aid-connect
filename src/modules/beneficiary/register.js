@@ -141,7 +141,7 @@ const AddBeneficiary = () => {
 													className="form-control"
 													name="address_temporary"
 													placeholder="Enter temporary address"
-													value={address_temporary}
+													value={address_temporary ? address_temporary : ''}
 													onChange={updateBeneficiaryData}
 												/>
 												<i className="clear-input">
@@ -170,7 +170,7 @@ const AddBeneficiary = () => {
 												<label className="label" htmlFor="gender">
 													Gender
 												</label>
-												<select className="form-control custom-select" id="gender">
+												<select className="form-control custom-select" name="gender"  onChange={updateBeneficiaryData}>
 													<option value="U">Select gender</option>
 													<option value="M">Male</option>
 													<option value="F">Female</option>

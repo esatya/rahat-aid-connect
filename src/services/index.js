@@ -3,12 +3,27 @@ import axios from 'axios';
 import API from '../constants/api';
 
 
-export async function checkAidConnectId(id) {
+export async function checkAidConnectId(aidConnectId) {
 	try {
-		if (!id) throw new Error('Must send id');
-		const {data} = await axios.get(`${API.AID_CONNECT}/${id}`);
+		if (!aidConnectId) throw new Error('Must send aidConnectId');
+		const {data} = await axios.get(`${API.AID_CONNECT}/${aidConnectId}`);
 		return data;
 	} catch (e) {
+		throw Error(e);
+	}
+}
+
+export async function sendBeneficiaries(aidConnectId,payload) {
+	try {
+		if (!aidConnectId) throw new Error('Must send aidConnectId');
+		const {data} = await axios({
+			url:`${API.AID_CONNECT}/${aidConnectId}/beneficiaries`,
+			method: 'post',
+			data: payload
+		});
+		return data;
+	} catch (e) {
+		console.log(e)
 		throw Error(e);
 	}
 }

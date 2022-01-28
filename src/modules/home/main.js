@@ -6,7 +6,7 @@ import {AppContext} from '../../contexts/AppContext';
 
 export default function Main() {
 	const [totalBen, setTotalBen] = useState(0);
-	const {aidConnectId}  = useContext(AppContext);
+	const {aidConnectId,projectName}  = useContext(AppContext);
 	const getTotalBeneficiary = useCallback(async () => {
 		const beneficiaries = await DataService.listBeneficiaries();
 		setTotalBen(beneficiaries.length);
@@ -22,7 +22,7 @@ export default function Main() {
 				<div className="section wallet-card-section pt-2">
 					<div className="wallet-card">
 						<div className="balance">
-							<h3 className="title">Wash Programme</h3>
+							<h3 className="title">{projectName}</h3>
 						</div>
 						<div className="balance mt-2">
 							<div className="left">

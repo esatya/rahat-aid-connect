@@ -1,17 +1,18 @@
 import React, { useState, useEffect, useCallback ,useContext} from 'react';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import AppHeader from '../layouts/AppHeader';
 import { IoHomeOutline, IoEye } from 'react-icons/io5';
 import { Button } from 'react-bootstrap';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import DataService from '../../services/db';
 import {AppContext} from '../../contexts/AppContext';
 import Info from '../global/Info';
 
 
 const BeneficiaryList = () => {
-	// const history = useHistory();
-	const {aidConnectId,isActive} = useContext(AppContext);
+    const history = useHistory();
+	const {aidConnectId,isActive,sendBeneficiaries} = useContext(AppContext);
 	const [beneficiary, setBeneficiary] = useState([]);
 	const [selectAll, setSelectAll] = useState(false);
 	const [selectedBeneficiary, setSelectedBeneficiary] = useState([]);
@@ -40,7 +41,33 @@ const BeneficiaryList = () => {
 		} else setSelectedBeneficiary([...selectedBeneficiary, phone]);
 	};
 
-	const handleShare = () => {};
+	const filterSharedBeneficiary = beneficiaries => {
+		const unSharedBeneficiary =  beneficiaries.filter((el) => !el.shared);
+		return unSharedBeneficiary.map((el)=>{
+			const {shared,...rest} = el;
+			return rest
+		})
+	}
+
+	const handleShare = async () => {
+		if(!selectedBeneficiary.length)  return Swal.fire('Error', 'Beneficiary Not Selected', 'warning');
+		const beneficiaries = await Promise.all(selectedBeneficiary.map(async (el)=>{
+			const {name,phone,address,email,gender,govt_id,shared} = await DataService.getBeneficiary(el);
+			return {name,phone,address,email,gender,govt_id,shared}
+		}))
+		const filteredBen = filterSharedBeneficiary(beneficiaries);
+		if(!filteredBen.length) return Swal.fire('Error', 'Selected Beneficiaries Already Shared', 'warning');
+
+		const d= await sendBeneficiaries(filteredBen);
+		if(d && d.inserted){
+			await Promise.all(selectedBeneficiary.map(async (el)=>{
+				await DataService.updateBeneficiary(el,{shared:true})
+			}))
+			await Swal.fire('Success',`Selected Beneficiaries Shared to Agency`,'success')
+			return history.push(`/${aidConnectId}`)
+		}
+		Swal.fire('Error',`Something Went Workng! Contact Admin`,'error')
+	};
 
 	useEffect(() => {
 		getAllBeneficiary();

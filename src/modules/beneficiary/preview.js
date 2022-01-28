@@ -13,7 +13,7 @@ import {AppContext} from '../../contexts/AppContext'
 export default function Preview() {
 	const history = useHistory();
 	const {aidConnectId} = useContext(AppContext);
-	const { name, phone, address, gender, photo, govt_id_image, resetBeneficiary } =
+	const { name, phone, address, gender, photo,email,govt_id, govt_id_image, resetBeneficiary } =
 		useContext(RegisterBeneficiaryContext);
 
 	const handleRegister = async event => {
@@ -22,9 +22,13 @@ export default function Preview() {
 			name,
 			phone,
 			address,
+			email: email || '',
+			gender,
+			govt_id: govt_id || '',
 			photo,
 			govt_id_image,
-			createdAt: Date.now()
+			createdAt: Date.now(),
+			shared:false
 		});
 		resetBeneficiary();
 		history.push(`/${aidConnectId}`);
