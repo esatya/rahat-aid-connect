@@ -12,6 +12,7 @@ const AppReducer = (state, action) => {
 				agency: action.data.agency,
 				email: action.data.email,
 				address: action.data.address,
+				address_temporary: action.data.address_temporary,
 				govt_id: action.data.govt_id,
 				project: action.data.project,
 				extras: {

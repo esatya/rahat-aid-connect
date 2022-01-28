@@ -6,7 +6,9 @@ const AppReducer = (state, action) => {
 			return {
 				...state,
 				aidConnectId: action.data.aidConnectId,
-				isActive: action.data.isActive
+				isActive: action.data.isActive,
+				projectName: action.data.projectName,
+				projectId: action.data.projectId
 			};
 			
 		case APP_ACTIONS.SET_AID_CONNECT_STATUS:
