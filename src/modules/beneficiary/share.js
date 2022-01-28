@@ -12,7 +12,7 @@ import Info from '../global/Info';
 
 const BeneficiaryList = () => {
     const history = useHistory();
-	const {aidConnectId,isActive,sendBeneficiaries} = useContext(AppContext);
+	const {aidConnectId,isActive,sendBeneficiaries,projectName} = useContext(AppContext);
 	const [beneficiary, setBeneficiary] = useState([]);
 	const [selectAll, setSelectAll] = useState(false);
 	const [selectedBeneficiary, setSelectedBeneficiary] = useState([]);
@@ -89,7 +89,7 @@ const BeneficiaryList = () => {
 			:(	
 			<div id="appCapsule">
 			<div className="section mt-2">
-				<h4 className="mt-3">Wash programme</h4>
+				<h4 className="mt-3">{projectName}</h4>
 				<div className="card mt-3">
 					<div className="ml-3 mt-1 mb-1">
 						{selectedBeneficiary

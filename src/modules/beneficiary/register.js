@@ -114,6 +114,7 @@ const AddBeneficiary = () => {
 													placeholder="Enter permanent address"
 													value={address ? address : ''}
 													onChange={updateBeneficiaryData}
+													required
 												/>
 												<i className="clear-input">
 													<IoCloseCircle className="ion-icon" />
