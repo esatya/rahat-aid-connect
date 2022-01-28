@@ -73,9 +73,13 @@ const DataService = {
 		return db.beneficiaries.get({ type }).orderBy('createdAt').reverse();
 	},
 
-	async updateBeneficiary(key, data) {
+	updateBeneficiary(key, data) {
 		return db.beneficiaries.update(key, data);
 	},
+
+	deleteBeneficiary(key) {
+		return db.beneficiaries.delete(key);
+	}
 
 };
 

@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useCallback,useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import Avatar from '../../assets/images/Man.png';
 import DataService from '../../services/db';
 import AppHeader from '../layouts/AppHeader';
-import { IoHomeOutline } from 'react-icons/io5';
+import {RiDeleteBin6Line} from 'react-icons/ri';
 import {AppContext} from '../../contexts/AppContext'
 
 const BeneficiaryDetail = props => {
+	const history = useHistory();
 	const benId = props.match.params.phone;
 	const [benData, setBenData] = useState({});
 	const {aidConnectId} = useContext(AppContext);
@@ -19,6 +21,29 @@ const BeneficiaryDetail = props => {
 		setDate(d);
 	}, [benId]);
 
+	const handleDelete = async() => {
+		console.log('deleting')
+		await DataService.deleteBeneficiary(benId);
+		Swal.fire({
+			title: 'Are you sure?',
+			text: "You won't be able to revert this!",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes, delete it!'
+		  }).then((result) => {
+			if (result.isConfirmed) {
+			  Swal.fire(
+				'Deleted!',
+				'Your file has been deleted.',
+				'success'
+			  )
+			  history.push(`/${aidConnectId}/list`)
+			}
+		  })		
+	}
+
 	useEffect(() => {
 		getBeneficiaryData();
 	}, [getBeneficiaryData]);
@@ -28,9 +53,7 @@ const BeneficiaryDetail = props => {
 			<AppHeader
 				currentMenu="Beneficiary detail"
 				actionButton={
-					<Link to={`/${aidConnectId}`} className="headerButton">
-						<IoHomeOutline className="ion-icon" />
-					</Link>
+						<RiDeleteBin6Line className="ion-icon" onClick={handleDelete} />
 				}
 			/>
 			<div id="appCapsule">
