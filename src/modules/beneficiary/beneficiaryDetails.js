@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useCallback, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import Avatar from '../../assets/images/Man.png';
 import DataService from '../../services/db';
 import AppHeader from '../layouts/AppHeader';
 import { AppContext } from '../../contexts/AppContext';
+import { AiOutlineEdit } from 'react-icons/ai';
 
 const BeneficiaryDetail = props => {
   const history = useHistory();
@@ -53,6 +54,12 @@ const BeneficiaryDetail = props => {
         <div className="section mt-2">
           <div className="card">
             <div className="card-body">
+              <div className="text-right">
+                <Link to={`/${aidConnectId}/edit/${benData.phone}`}>
+                  <AiOutlineEdit style={{ fontSize: '24px' }} />
+                </Link>
+              </div>
+
               <div className="mt-1 text-center">
                 {benData && benData.photo ? (
                   <img

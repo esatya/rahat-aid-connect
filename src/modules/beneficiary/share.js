@@ -14,6 +14,8 @@ const BeneficiaryList = () => {
   const [beneficiary, setBeneficiary] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
   const [selectedBeneficiary, setSelectedBeneficiary] = useState([]);
+  const [status, setStatus] = useState(false);
+
   const getAllBeneficiary = useCallback(async () => {
     const beneficiariesList = await DataService.listBeneficiaries();
     setBeneficiary(beneficiariesList);
@@ -124,6 +126,7 @@ const BeneficiaryList = () => {
                           />
                         </th>
                         <th scope="col">Beneficiary</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Action</th>
                       </tr>
                     </thead>
@@ -146,6 +149,11 @@ const BeneficiaryList = () => {
                                   <strong>{ben.name}</strong>
                                   <br />
                                   {ben.phone}
+                                </div>
+                              </td>
+                              <td>
+                                <div>
+                                  <strong>{status ? 'Shared' : 'Unshared'}</strong>
                                 </div>
                               </td>
                               <td>
