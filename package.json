@@ -1,0 +1,74 @@
+{
+  "name": "rahat-aid-connect",
+  "version": "1.0.0",
+  "description": "Beneficiary registration tool for agencies.",
+  "keywords": [],
+  "author": {
+    "email": "team@esatya.io",
+    "name": "eSatya Team"
+  },
+  "maintainers": [
+    {
+      "email": "team@esatya.io",
+      "name": "eSatya Team"
+    }
+  ],
+  "license": "TBD",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/esatya/rahat-aid-connect.git"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "bootstrap": "^4.5.1",
+    "dexie": "^3.2.0",
+    "history": "^5.0.0",
+    "ipfs-http-client": "^49.0.2",
+    "ipfs-only-hash": "^4.0.0",
+    "moment": "^2.29.1",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.6.0",
+    "react-dom": "^17.0.2",
+    "react-fullscreen-image": "^0.0.3",
+    "react-icons": "^4.3.1",
+    "react-moment": "^1.1.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
+    "react-webcam": "^5.2.4",
+    "sweetalert2": "^11.3.6"
+  },
+  "devDependencies": {
+    "eslint": "^7.30.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "^2.3.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "lint": "eslint --fix .",
+    "format": "prettier -w ."
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
