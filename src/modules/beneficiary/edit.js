@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect, useCallback } from 'react';
 import { Form, Button, Accordion, Card } from 'react-bootstrap';
 import { IoCloseCircle, IoHomeOutline, IoChevronDownOutline } from 'react-icons/io5';
 import { useHistory, Link } from 'react-router-dom';
-import { RegisterBeneficiaryContext } from '../../contexts/registerBeneficiaryContext';
 import AppHeader from '../layouts/AppHeader';
 import { AppContext } from '../../contexts/AppContext';
 import DataService from '../../services/db';
@@ -11,7 +10,6 @@ const AddBeneficiary = props => {
   const benId = props.match.params.phone;
   const history = useHistory();
   const { aidConnectId } = useContext(AppContext);
-  const { setBeneficiaryDetails } = useContext(RegisterBeneficiaryContext);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -19,13 +17,11 @@ const AddBeneficiary = props => {
     address: '',
     gender: '',
     govt_id: '',
-    photo: '',
-    govt_id_image: '',
   });
   const getBeneficiaryData = useCallback(async () => {
     const data = await DataService.getBeneficiary(benId);
-    const { photo, govt_id_image, name, phone, email, address, gender, govt_id } = data;
-    setFormData({ name, phone, email, address, photo, govt_id_image, gender, govt_id });
+    const { name, phone, email, address, gender, govt_id } = data;
+    setFormData({ name, phone, email, address, gender, govt_id });
   }, [benId]);
 
   const handleInputChange = e => {
@@ -34,8 +30,8 @@ const AddBeneficiary = props => {
 
   const save = async e => {
     e.preventDefault();
-    console.log({ formData });
-    setBeneficiaryDetails(formData);
+    const {phone,...rest} = formData;
+    DataService.updateBeneficiary(phone,rest)
     history.push(`/${aidConnectId}/list`);
   };
 
@@ -67,6 +63,30 @@ const AddBeneficiary = props => {
 
                 <Accordion.Collapse eventKey="0">
                   <Card.Body>
+
+                    <div className="form-group basic">
+                      <div className="input-wrapper">
+                        <label className="label">Phone (cannot be edited)</label>
+                        <Form.Control
+                          type="number"
+                          className="form-control"
+                          name="phone"
+                          placeholder="Enter mobile number"
+                          value={formData.phone || ''}
+                          onChange={handleInputChange}
+                          onKeyDown={e => {
+                            if (['-', '+', 'e'].includes(e.key)) {
+                              e.preventDefault();
+                            }
+                          }}
+                          disabled
+                        />
+                        <i className="clear-input">
+                          <IoCloseCircle className="ion-icon" />
+                        </i>
+                      </div>
+                    </div>
+
                     <div className="form-group basic">
                       <div className="input-wrapper">
                         <label className="label">Full Name *</label>
@@ -84,28 +104,7 @@ const AddBeneficiary = props => {
                         </i>
                       </div>
                     </div>
-                    <div className="form-group basic">
-                      <div className="input-wrapper">
-                        <label className="label">Phone *</label>
-                        <Form.Control
-                          type="number"
-                          className="form-control"
-                          name="phone"
-                          placeholder="Enter mobile number"
-                          value={formData.phone || ''}
-                          onChange={handleInputChange}
-                          onKeyDown={e => {
-                            if (['-', '+', 'e'].includes(e.key)) {
-                              e.preventDefault();
-                            }
-                          }}
-                          required
-                        />
-                        <i className="clear-input">
-                          <IoCloseCircle className="ion-icon" />
-                        </i>
-                      </div>
-                    </div>
+                  
                     <div className="form-group basic">
                       <div className="input-wrapper">
                         <label className="label">Permanent address *</label>
