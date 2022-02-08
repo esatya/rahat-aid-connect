@@ -98,7 +98,7 @@ const BeneficiaryDetail = props => {
                 </li>
                 <li>
                   <strong>Shared status</strong>
-                  {benData.status ? (
+                  {benData.shared ? (
                     <span className="text-success" style={{ overflow: 'hidden' }}>
                       Success
                     </span>
