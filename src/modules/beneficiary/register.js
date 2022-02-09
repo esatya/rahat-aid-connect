@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { Form, Button, Accordion, Card } from 'react-bootstrap';
 import { IoCloseCircle, IoHomeOutline, IoChevronDownOutline } from 'react-icons/io5';
 import { useHistory, Link } from 'react-router-dom';
 import { RegisterBeneficiaryContext } from '../../contexts/registerBeneficiaryContext';
 import AppHeader from '../layouts/AppHeader';
 import { AppContext } from '../../contexts/AppContext';
+import DataService from '../../services/db';
+import Swal from 'sweetalert2';
 
 const AddBeneficiary = () => {
   const history = useHistory();
@@ -24,14 +26,31 @@ const AddBeneficiary = () => {
     adult,
     child,
   } = useContext(RegisterBeneficiaryContext);
+  const [beneficiaryPhone, setBeneficiaryPhone] = useState([]);
 
-  const updateBeneficiaryData = e => {
+  const getBeneficiary = useCallback(async () => {
+    let bens = await DataService.listBeneficiaries();
+    const beneficiariesPhone = bens.map(el => el.phone);
+    setBeneficiaryPhone(beneficiariesPhone);
+  }, []);
+
+  const updateBeneficiaryData = async e => {
     const formData = new FormData(e.target.form);
     const data = {};
     formData.forEach((value, key) => {
       data[key] = value;
       if (data[key] === '') data[key] = null;
     });
+    const phoneNumber = beneficiaryPhone.includes(data.phone);
+    if (phoneNumber) {
+      Swal.fire({
+        title: 'Phone number already exist!',
+        text: 'Enter new phone number.',
+        icon: 'warning',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Try another phone number',
+      });
+    }
     setBeneficiaryDetails(data);
   };
 
@@ -39,6 +58,11 @@ const AddBeneficiary = () => {
     e.preventDefault();
     history.push(`/${aidConnectId}/beneficiary/photo`);
   };
+
+  useEffect(() => {
+    getBeneficiary();
+  }, [getBeneficiary]);
+
   return (
     <>
       <AppHeader
