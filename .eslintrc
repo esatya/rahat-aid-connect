@@ -1,7 +1,0 @@
-{
-	"extends": ["react-app", "plugin:prettier/recommended"],
-	"rules": {
-		"no-undef": "off",
-		"prettier/prettier": 0,
-	}
-}
