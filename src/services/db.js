@@ -5,7 +5,8 @@ import { DB } from '../constants';
 const db = new Dexie(DB.NAME);
 
 db.version(DB.VERSION).stores({
-  beneficiaries: 'phone,name,address,email,gender,govt_id,createdAt,photo,govt_id_image,shared',
+  beneficiaries:
+    'phone,aid_connect_id,name,address,email,gender,govt_id,createdAt,photo,govt_id_image,shared',
   agencies:
     'address,name,api,network,rahatAddress,tokenAddress,erc20Address,erc1155Address,adminAddress,phone,email,logo,isApproved',
   projects: 'id,name',
@@ -65,9 +66,14 @@ const DataService = {
     return db.beneficiaries.get(name);
   },
 
-  listBeneficiaries(type) {
-    if (!type) return db.beneficiaries.orderBy('createdAt').reverse().toArray();
-    return db.beneficiaries.get({ type }).orderBy('createdAt').reverse();
+  listBeneficiaries(aid_connect_id) {
+    if (!aid_connect_id) return db.beneficiaries.orderBy('createdAt').reverse().toArray();
+    return db.beneficiaries
+      .orderBy('createdAt')
+      .filter(function (ben) {
+        return ben.aid_connect_id === aid_connect_id;
+      })
+      .toArray();
   },
 
   updateBeneficiary(key, data) {

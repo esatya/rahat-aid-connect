@@ -16,9 +16,9 @@ const BeneficiaryList = () => {
   const [selectedBeneficiary, setSelectedBeneficiary] = useState([]);
 
   const getAllBeneficiary = useCallback(async () => {
-    const beneficiariesList = await DataService.listBeneficiaries();
+    const beneficiariesList = await DataService.listBeneficiaries(aidConnectId);
     setBeneficiary(beneficiariesList);
-  }, []);
+  }, [aidConnectId]);
 
   const handleSelectAll = e => {
     const { checked } = e.target;

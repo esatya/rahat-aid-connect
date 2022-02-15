@@ -5,12 +5,13 @@ import DataService from '../../services/db';
 import { AppContext } from '../../contexts/AppContext';
 
 export default function Main() {
-  const [totalBen, setTotalBen] = useState(0);
   const { aidConnectId, projectName } = useContext(AppContext);
+  const [totalBen, setTotalBen] = useState(0);
+
   const getTotalBeneficiary = useCallback(async () => {
-    const beneficiaries = await DataService.listBeneficiaries();
+    const beneficiaries = await DataService.listBeneficiaries(aidConnectId);
     setTotalBen(beneficiaries.length);
-  }, []);
+  }, [aidConnectId]);
 
   useEffect(() => {
     getTotalBeneficiary();

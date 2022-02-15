@@ -7,12 +7,17 @@ import { AppContext } from '../../contexts/AppContext';
 const List = ({ limit }) => {
   const [ben, setBen] = useState([]);
   const { aidConnectId } = useContext(AppContext);
+
   const getBeneficiaries = useCallback(async () => {
-    let bens = await DataService.listBeneficiaries();
-    if (!bens) return;
-    if (limit) bens = bens.slice(0, limit);
-    setBen(bens);
-  }, [limit]);
+    try {
+      let bens = await DataService.listBeneficiaries(aidConnectId);
+      if (!bens) return;
+      if (limit) bens = bens.slice(0, limit);
+      setBen(bens);
+    } catch (e) {
+      console.log({ e });
+    }
+  }, [limit, aidConnectId]);
 
   useEffect(() => {
     getBeneficiaries();
