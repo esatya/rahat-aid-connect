@@ -22,7 +22,6 @@ export async function sendBeneficiaries(aidConnectId, payload) {
     });
     return data;
   } catch (e) {
-    console.log(e);
     throw Error(e);
   }
 }
