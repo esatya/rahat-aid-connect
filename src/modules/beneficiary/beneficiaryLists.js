@@ -7,13 +7,14 @@ import Avatar from '../../assets/images/Man.png';
 import { AppContext } from '../../contexts/AppContext';
 
 const BeneficiaryList = () => {
-  const [ben, setBen] = useState([]);
   const { aidConnectId } = useContext(AppContext);
+  const [ben, setBen] = useState([]);
+
   const getBeneficiaries = useCallback(async () => {
-    const bens = await DataService.listBeneficiaries();
+    const bens = await DataService.listBeneficiaries(aidConnectId);
     if (!bens) return;
     setBen(bens);
-  }, []);
+  }, [aidConnectId]);
 
   useEffect(() => {
     getBeneficiaries();

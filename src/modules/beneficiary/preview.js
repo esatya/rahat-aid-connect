@@ -18,6 +18,7 @@ export default function Preview() {
   const handleRegister = async event => {
     event.preventDefault();
     await DataService.addBeneficiary({
+      aid_connect_id: aidConnectId,
       name,
       phone,
       address,
